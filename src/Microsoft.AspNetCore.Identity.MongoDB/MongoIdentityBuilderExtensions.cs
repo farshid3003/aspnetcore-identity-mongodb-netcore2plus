@@ -89,6 +89,24 @@ namespace Microsoft.Extensions.DependencyInjection
 		{
 			return services.AddIdentity<TUser, TRole>()
 				.RegisterMongoStores<TUser, TRole>(connectionString);
-		}
-	}
+        }
+
+        /// <summary>
+        ///     This method allows you to customize the user and role type when registering identity services
+        ///     and MongoDB stores.
+        /// </summary>
+        /// <typeparam name="TUser"></typeparam>
+        /// <typeparam name="TRole"></typeparam>
+        /// <param name="services"></param>
+        /// <param name="connectionString">Connection string must contain the database name</param>
+        /// <param name="identityOptions">Identity Options</param>
+        public static IdentityBuilder AddIdentityWithMongoStoresUsingCustomTypes<TUser, TRole>(this IServiceCollection services, string connectionString, Action<IdentityOptions> identityOptions)
+            where TUser : IdentityUser
+            where TRole : IdentityRole => services.AddIdentity<TUser, TRole>(identityOptions)
+                .RegisterMongoStores<TUser, TRole>(connectionString);
+
+
+    }
+
+
 }

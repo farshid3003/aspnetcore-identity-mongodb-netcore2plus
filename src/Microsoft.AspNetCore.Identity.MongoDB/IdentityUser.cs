@@ -26,11 +26,19 @@
 
 		public virtual string NormalizedUserName { get; set; }
 
-		/// <summary>
-		///     A random value that must change whenever a users credentials change
-		///     (password changed, login removed)
-		/// </summary>
-		public virtual string SecurityStamp { get; set; }
+        /// <summary>
+        /// Assign User to a company
+        /// this help you to use a single identity server for multy company
+        /// and separate users
+        /// a user can be in more than one company with one email and different passwords
+        /// </summary>
+        public virtual string CompanyId { get; set; }
+
+        /// <summary>
+        ///     A random value that must change whenever a users credentials change
+        ///     (password changed, login removed)
+        /// </summary>
+        public virtual string SecurityStamp { get; set; }
 
 		public virtual string Email { get; set; }
 
